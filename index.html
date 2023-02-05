@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <style>
-      body{background-image:linear-gradient(to bottom right,#076652,#07662a);border:.25rem solid #fedd00;border-radius:.5rem;height:100vh;overflow:hidden;width:100vw;}
+      body{background-color:#076652;background-image:linear-gradient(125deg,#076652 81%,#fedd00 98%);border:.25rem solid #fedd00;border-radius:.5rem;height:100vh;overflow:hidden;width:100vw;}
       .monospace{font-family:'Courier New',san-serif;}
       h1,h2,p{font-family:'Baskervville',serif;}
     </style>
@@ -25,7 +25,7 @@
     </script>
   </head>
   <body class="align-items-center justify-content-center d-flex flex-column p-3" id="app">
-    <h1 class="fw-bolder mb-3 text-light">Random Golf Yardage Generator <span class="fw-light monospace">v1</span></h1>
+    <h1 class="border-2 border-bottom border-light fw-bolder mb-3 pb-3 text-center text-light">Random Golf Yardage Generator</h1>
     <form class="d-block d-sm-flex mb-3">
       <div class="me-sm-3 py-2">
         <label class="visually-hidden" for="shortest">Shortest Distance</label>
@@ -39,9 +39,9 @@
       </div>
     </form>
     <div class="mb-3">
-      <button type="button" class="btn btn-outline-light btn-lg" id="request-yardage">Get Yardage!</button>
+      <button type="button" class="btn btn-outline-light btn-lg" id="request-yardage">Randomize Yardage</button>
     </div>
-    <h2 class="fw-bolder text-light">Your Yardage Is: <span class="monospace" id="random-yardage"></span></h2>
+    <h2 class="fw-bolder text-center text-light">Your Distance Is: <span class="d-block display-2 fw-bolder monospace mt-2 mb-1 text-center" id="random-yardage"></span> Yards</h2>
 
 <script>
   function shortestYardage() {
