@@ -14,7 +14,7 @@
       body>div{overflow-y:scroll;}
       .flag{background-color:#ff0;background-image:url('https://1.bp.blogspot.com/-ZfsqOfM2fcY/XqBC1NlfOwI/AAAAAAAAzQs/Y7_A_YfX6d46s-U5g2ucFaSzjsjM4dCDgCLcBGAsYHQ/s1600/yellow_flag.gif');background-size:contain;background-repeat:no-repeat;background-position:center;color:#006b54;position:relative;transform:rotate(-2deg) skew(-5deg, -3deg);}
       .flag::after{content:'';border:1.5rem solid #006b54;bottom:-2px;height:calc(100% + 4px);left:-2px;position:absolute;width:calc(100% + 4px);}
-      .flagstick{background-color:#ff0;border-right:px solid rgba(0,0,0,.3);border-top:4px solid #000;height:55vh;left:24px;position:absolute;top:20px;transform:rotate(-1deg);width:4px;z-index:1;}
+      .flagstick{background-color:#ff0;border-right:1px solid rgba(0,0,0,.3);border-top:4px solid #000;height:55vh;left:19px;position:absolute;top:20px;transform:rotate(1deg);width:4px;z-index:1;}
       #random-yardage{position:relative;top:-3px;}
       #random-yardage::after{background-color:#f00;bottom:0;content:'';display:block;height:3px;left:0;position:absolute;width:100%;}
       .monospace{font-family:'Courier New',san-serif;}
@@ -33,12 +33,12 @@
       <h1 class="visually-hidden" title="Random Golf Distance Generator">Random Golf Distance Generator</h1>
       <form class="d-block d-sm-flex mb-sm-3 row" id="app" onsubmit="return false">
         <div class="col-12 col-sm-4 py-1">
-          <label class="visually-hidden" for="shortest">Shortest Distance</label>
+          <label class="visually-hidden" for="shortest">Minimum Distance Request</label>
           <input tabindex="2" inputmode="decimal" min="0" max="998" class="fw-bolder p-1 text-center w-100" type="number" id="shortest" name="shortest" value="25" onfocusout="shortestYardage()" required>
           <p class="form-text m-0 text-center text-light">Minimum Distance Request</p>
         </div>
         <div class="col-12 col-sm-4 py-1">
-          <label class="visually-hidden" for="longest">Longest Distance</label>
+          <label class="visually-hidden" for="longest">Maximum Distance Request</label>
           <input tabindex="3" inputmode="decimal" min="1" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="longest" name="longest" value="175" onfocusout="longestYardage()" required>
           <p class="form-text m-0 text-center text-light">Maximum Distance Request</p>
         </div>
