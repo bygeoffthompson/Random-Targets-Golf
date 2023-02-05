@@ -17,6 +17,7 @@
       .flagstick{background-color:#ff0;border-right:1px solid rgba(0,0,0,.3);border-top:4px solid #000;height:55vh;left:19px;position:absolute;top:20px;transform:rotate(1deg);width:5px;z-index:1;}
       #random-yardage{position:relative;top:-3px;}
       #random-yardage::after{background-color:#f00;bottom:0;content:'';display:block;height:3px;left:0;position:absolute;width:100%;}
+      #yardage-range{bottom:1rem;position:relative;}
       .monospace{font-family:'Courier New',san-serif;}
     </style>
     <!-- Google tag (gtag.js) -->
@@ -58,8 +59,8 @@
           <input tabindex="1" type="submit" class="btn btn-success shadow-lg" id="randomize" value="Randomize"></button>
         </div>
       </form>
-      <h2 class="fw-bolder mb-3 text-center text-light">Your Golf Shot Is:
-        <div class="display-2 flag fw-bolder monospace mt-2 mb-1 p-5 text-center"><span class="flagstick"></span><span id="random-yardage"></span></div>
+      <h2 class="fw-bolder mb-4 text-center text-light">Your Golf Shot Is:
+        <div class="display-2 flag fw-bolder monospace my-3 p-5 text-center"><span class="flagstick"></span><span id="random-yardage"></span></div>
         <div class="mb-2 fw-bolder opacity-75 text-center text-light" id="yardage-range"></div>
         <div class="yards" id="units">Yards</div>
       </h2>
