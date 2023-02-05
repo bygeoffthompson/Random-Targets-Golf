@@ -14,7 +14,7 @@
       body>div{overflow-y:scroll;}
       .flag{background-color:#ff0;background-image:url('https://1.bp.blogspot.com/-ZfsqOfM2fcY/XqBC1NlfOwI/AAAAAAAAzQs/Y7_A_YfX6d46s-U5g2ucFaSzjsjM4dCDgCLcBGAsYHQ/s1600/yellow_flag.gif');background-size:contain;background-repeat:no-repeat;background-position:center;color:#006b54;position:relative;transform:rotate(-2deg) skew(-5deg, -3deg);}
       .flag::after{content:'';border:1.5rem solid #006b54;bottom:-2px;height:calc(100% + 4px);left:-2px;position:absolute;width:calc(100% + 4px);}
-      .flagstick{background-color:#ff0;border-right:1px solid rgba(0,0,0,.3);border-top:4px solid #000;height:55vh;left:19px;position:absolute;top:20px;transform:rotate(1deg);width:4px;z-index:1;}
+      .flagstick{background-color:#ff0;border-right:1px solid rgba(0,0,0,.3);border-top:4px solid #000;height:55vh;left:19px;position:absolute;top:20px;transform:rotate(1deg);width:5px;z-index:1;}
       #random-yardage{position:relative;top:-3px;}
       #random-yardage::after{background-color:#f00;bottom:0;content:'';display:block;height:3px;left:0;position:absolute;width:100%;}
       .monospace{font-family:'Courier New',san-serif;}
@@ -55,18 +55,18 @@
           <p class="form-text m-0 text-center text-light">Dispersion +/-</p>
         </div>
         <div class="col-12 my-3 text-center">
-          <input tabindex="1" type="submit" class="btn btn-success shadow-lg" id="request-yardage" value="Randomize Distance"></button>
+          <input tabindex="1" type="submit" class="btn btn-success shadow-lg" id="randomize" value="Randomize"></button>
         </div>
       </form>
-      <h2 class="fw-bolder mb-3 text-center text-light">Your Distance Is:
+      <h2 class="fw-bolder mb-3 text-center text-light">Your Golf Shot Is:
         <div class="display-2 flag fw-bolder monospace mt-2 mb-1 p-5 text-center"><span class="flagstick"></span><span id="random-yardage"></span></div>
-        <div class="mb-2 fw-bolder text-center text-light" id="yardage-range"></div>
+        <div class="mb-2 fw-bolder opacity-75 text-center text-light" id="yardage-range"></div>
         <div class="yards" id="units">Yards</div>
       </h2>
       <button type="button" class="btn btn-dark btn-sm shadow-lg" id="unit-toggle">Change Units</button>
     </div>
   <script>
-    var randomizeDistance = document.getElementById('request-yardage');
+    var randomizeDistance = document.getElementById('randomize');
     var changeUnits = document.getElementById('unit-toggle');
     var yardage = document.getElementById('random-yardage');
     var yardageRange = document.getElementById('yardage-range');
