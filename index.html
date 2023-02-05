@@ -7,9 +7,11 @@
     <title>Random Golf Yardages</title>
     <meta name="description" content="A web application that generates random numbers for golf shot distance practice.">
     <meta name="author" content="Geoff Thompson">
+    <link href="https://cdn.shopify.com/s/files/1/0388/4423/5907/files/Uneekor_Icon_08012022_32x32.png" rel="shortcut icon" type="image/png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <style>
       body{background-image:linear-gradient(125deg,#076652 81%,#fedd00 98%);border:.25rem solid #fedd00;height:100vh;width:100vw;}
+      h1{cursor:default;font-family:'Brush Script MT';letter-spacing:2px;}
       .monospace{font-family:'Courier New',san-serif;}
     </style>
     <!-- Google tag (gtag.js) -->
@@ -22,21 +24,21 @@
     </script>
   </head>
    <body class="align-items-center justify-content-center d-flex flex-column p-3">
-    <h1 class="border-2 border-bottom border-light fw-bolder mb-3 pb-3 text-center text-light">Random Golf Distance Generator</h1>
+    <h1 class="border-2 border-bottom border-light fw-bolder mb-3 pb-3 text-center text-light" title="Random Golf Distance Generator">Random Golf Distance Generator</h1>
     <form class="d-block d-sm-flex mb-3 row" id="app" onsubmit="return false">
       <div class="col-12 col-sm-4 py-2">
         <label class="visually-hidden" for="shortest">Shortest Distance</label>
-        <input inputmode="decimal" min="0" max="998" class="fw-bolder p-1 text-center w-100" type="number" id="shortest" name="shortest" value="25" onfocusout="shortestYardage()" required>
+        <input tabindex="2" inputmode="decimal" min="0" max="998" class="fw-bolder p-1 text-center w-100" type="number" id="shortest" name="shortest" value="25" onfocusout="shortestYardage()" required>
         <p class="form-text m-0 text-center text-light">Minimum Distance Request</p>
       </div>
       <div class="col-12 col-sm-4 py-2">
         <label class="visually-hidden" for="longest">Longest Distance</label>
-        <input inputmode="decimal" min="1" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="longest" name="longest" value="175" onfocusout="longestYardage()" required>
+        <input tabindex="3" inputmode="decimal" min="1" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="longest" name="longest" value="175" onfocusout="longestYardage()" required>
         <p class="form-text m-0 text-center text-light">Maximum Distance Request</p>
       </div>
       <div class="col-12 col-sm-4 py-2">
         <label class="visually-hidden" for="longest">Dispersion</label>
-        <select class="fw-bolder p-2 text-center w-100" form="app" name="dispersion" id="dispersion">
+        <select class="fw-bolder p-2 text-center w-100" form="app" name="dispersion" id="dispersion" tabindex="4">
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -47,10 +49,10 @@
         <p class="form-text m-0 text-center text-light">Dispersion +/-</p>
       </div>
       <div class="col-12 my-3 text-center">
-        <input type="submit" class="btn btn-light btn-lg shadow-lg" id="request-yardage" value="Randomize Distance"></button>
+        <input tabindex="1" type="submit" class="btn btn-success btn-lg shadow-lg" id="request-yardage" value="Randomize Distance"></button>
       </div>
     </form>
-    <h2 class="fw-bolder text-center text-light">Your Distance Is: <span class="d-block display-2 fw-bolder monospace mt-2 mb-1 text-center" id="random-yardage"></span> <span class="yards" id="units">Yards</span></h2>
+    <h2 class="fw-bolder mb-3 text-center text-light">Your Distance Is: <span class="d-block display-2 fw-bolder monospace mt-2 mb-1 text-center" id="random-yardage"></span> <span class="yards" id="units">Yards</span></h2>
     <button type="button" class="btn btn-dark btn-sm shadow-lg" id="unit-toggle">Change Units</button>
   <script>
     var randomizeDistance = document.getElementById('request-yardage');
