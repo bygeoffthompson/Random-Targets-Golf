@@ -34,7 +34,7 @@
       <form class="d-block d-sm-flex mb-sm-3 row" id="app" onsubmit="return false">
         <div class="col-12 col-sm-4 py-1">
           <label class="visually-hidden" for="shortest">Minimum Distance Request</label>
-          <input tabindex="2" inputmode="decimal" min="0" max="998" class="fw-bolder p-1 text-center w-100" type="number" id="shortest" name="shortest" value="25" onfocusout="shortestYardage()" required>
+          <input tabindex="2" inputmode="decimal" min="0" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="shortest" name="shortest" value="25" onfocusout="shortestYardage()" required>
           <p class="form-text m-0 text-center text-light">Minimum Distance Request</p>
         </div>
         <div class="col-12 col-sm-4 py-1">
@@ -44,14 +44,7 @@
         </div>
         <div class="col-12 col-sm-4 py-1">
           <label class="visually-hidden" for="longest">Dispersion</label>
-          <select class="fw-bolder p-2 text-center w-100" form="app" name="dispersion" id="dispersion" tabindex="4">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+          <input tabindex="3" inputmode="decimal" min="0" max="10" class="fw-bolder p-1 text-center w-100" type="number" id="dispersion" name="dispersion" value="0" onfocusout="longestYardage()" required>
           <p class="form-text m-0 text-center text-light">Dispersion +/-</p>
         </div>
         <div class="col-12 my-3 text-center">
@@ -66,11 +59,37 @@
       <button type="button" class="btn btn-dark btn-sm shadow-lg" id="unit-toggle">Change Units</button>
     </div>
   <script>
+    var url = window.location.href;
+    var shortest = document.getElementById('shortest');
+    var longest = document.getElementById('longest');
+    var dispersion = document.getElementById('dispersion');
     var randomize = document.getElementById('randomize');
     var changeUnits = document.getElementById('unit-toggle');
     var yardage = document.getElementById('random-yardage');
     var yardageRange = document.getElementById('yardage-range');
     randomYardage();
+
+    if (url.indexOf('?') > -1) {
+      var urlArgs = url.split('?').pop();
+      var yardArg = urlArgs.split(',');
+
+      function onlyNumbers(str) {
+        return /^[0-9]+$/.test(str);
+      }
+
+      if (onlyNumbers(yardArg[0]) && onlyNumbers(yardArg[1]) && onlyNumbers(yardArg[2])) {
+        shortest.setAttribute('value', yardArg[0]);
+        if (yardArg[1]) {
+          longest.setAttribute('value', yardArg[1]);
+        }
+        if (yardArg[2]) {
+          dispersion.setAttribute('value', yardArg[2]);
+        }
+        randomYardage();
+      } else {
+        alert('Only numbers allowed in URL Query');
+      }
+    }
 
     function shortestYardage() {
       document.getElementById('shortest').setAttribute('value', parseInt(document.getElementById('shortest').value));
@@ -85,27 +104,27 @@
     }
 
     function randomYardage() {
-      var shortest = parseInt(document.getElementById('shortest').value);
-      var longest = parseInt(document.getElementById('longest').value);
-      var dispersion = parseInt(document.getElementById('dispersion').value);
+      var shortestVal = parseInt(document.getElementById('shortest').value);
+      var longestVal = parseInt(document.getElementById('longest').value);
+      var dispersionVal = parseInt(document.getElementById('dispersion').value);
 
-      if (dispersion === 0) {
+      if (dispersionVal === 0) {
         yardageRange.innerHTML = '';
         var randomNumber = function (s, l) {
 	        return Math.floor(Math.random() * (l - s + 1) + s);
         };
-        var yards = randomNumber(shortest, longest);
+        var yards = randomNumber(shortestVal, longestVal);
         yardage.innerHTML = yards;
       } else {
-        var shortest = parseInt(document.getElementById('shortest').value) + dispersion;
-        var longest = parseInt(document.getElementById('longest').value) - dispersion;
+        var shortestVal = parseInt(document.getElementById('shortest').value) + dispersionVal;
+        var longestVal = parseInt(document.getElementById('longest').value) - dispersionVal;
         var randomNumber = function (s, l) {
 	        return Math.floor(Math.random() * (l - s + 1) + s);
         };
-        var yards = randomNumber(shortest, longest);
+        var yards = randomNumber(shortestVal, longestVal);
         yardage.innerHTML = yards;
-        var short = yards - dispersion;
-        var long = yards + dispersion;
+        var short = yards - dispersionVal;
+        var long = yards + dispersionVal;
         var target = short + '-' + long;
         yardageRange.innerHTML = target;
       }
