@@ -55,7 +55,7 @@
       <h2 class="fw-bolder mb-4 text-center text-light">Your Golf Shot Is:
         <span class="d-block display-2 fw-bolder monospace my-3 p-5 text-center" id="flag"><span id="flagstick"></span><span id="random-yardage"></span></span>
         <span class="d-block fw-bolder opacity-75 text-center text-light" id="yardage-range"></span>
-        <span class="d-block yards" id="units">Yards</span>
+        <span class="d-block" id="units">Yards</span>
       </h2>
       <button type="button" class="btn btn-dark btn-sm shadow-lg" id="unit-toggle">Change Units</button>
     </div>
@@ -66,7 +66,7 @@
     var longest = document.getElementById('longest');
     var dispersion = document.getElementById('dispersion');
     var randomize = document.getElementById('randomize');
-    var changeUnits = document.getElementById('unit-toggle');
+    var eUnits = document.getElementById('unit-toggle');
     var yardage = document.getElementById('random-yardage');
     var yardageRange = document.getElementById('yardage-range');
     randomYardage();
@@ -80,7 +80,7 @@
       }
 
       if (onlyNumbers(yardArg[0])) {
-        shortest.setAttribute('value', yardArg[0]);
+        shortest.setAttribute('value', parseInt(yardArg[0]));
       } else if (yardArg[0] == null) {
         // nada surf.
       } else {
@@ -88,7 +88,7 @@
       }
 
       if (onlyNumbers(yardArg[1])) {
-        longest.setAttribute('value', yardArg[1]);
+        longest.setAttribute('value', parseInt(yardArg[1]));
       } else if (yardArg[1] == null) {
         // nada surf.
       } else {
@@ -96,7 +96,7 @@
       }
 
       if (onlyNumbers(yardArg[2])) {
-        dispersion.setAttribute('value', yardArg[2]);
+        dispersion.setAttribute('value', parseInt(yardArg[2]));
       } else if (yardArg[2] == null) {
         // nada surf.
       } else {
@@ -158,15 +158,13 @@
       randomYardage();
     });
 
-    changeUnits.addEventListener('click', function(e) {
+    eUnits.addEventListener('click', function(e) {
       var units = document.getElementById('units');
-      if (units.classList.contains('yards')) {
-        units.classList.toggle('yards');
-        units.classList.toggle('meters');
+      if (!units.classList.contains('eu')) {
+        units.classList.toggle('eu');
         units.innerHTML = 'Meters';
       } else {
-        units.classList.toggle('yards');
-        units.classList.toggle('meters');
+        units.classList.toggle('eu');
         units.innerHTML = 'Yards';
       }
     });
