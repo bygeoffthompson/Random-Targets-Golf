@@ -50,7 +50,7 @@
           <p class="form-text m-0 text-center text-light">Dispersion +/-</p>
         </div>
         <div class="col-12 my-3 text-center">
-          <input tabindex="1" type="submit" class="btn btn-light shadow-lg" id="randomize" value="Randomize"></button>
+          <input tabindex="1" type="submit" class="btn btn-light btn-lg shadow-lg" id="randomize" value="Randomize"></button>
         </div>
       </form>
       <h2 class="fw-bolder mb-4 text-center text-light">Your Golf Shot Is:
@@ -72,46 +72,49 @@
     randomYardage();
 
     if (url.indexOf('?fbclid') > -1) {
-      // Nada Surf.
+      // Ignore Facebook Arguments.
     } else if (url.indexOf('?') > -1) {
       var urlArgs = url.split('?').pop();
       var yardArg = urlArgs.split(',');
+      urlArguments();
 
       function onlyNumbers(str) {
         return /^[0-9]+$/.test(str);
       }
 
-      if (yardArg[0] == null) {
-        // Nada Surf.
-      } else if (!onlyNumbers(yardArg[0])) {
-        argumentIntegers();
-      } else if (parseInt(yardArg[0]) > 999) {
-        argumentLength();
-      } else {
-        shortest.setAttribute('value', parseInt(yardArg[0]));
-      }
+      function urlArguments() {
+        if (yardArg[0] == null) {
+          return;
+        } else if (!onlyNumbers(yardArg[0])) {
+          argumentIntegers();
+        } else if (parseInt(yardArg[0]) > 999) {
+          argumentLength();
+        } else {
+          shortest.setAttribute('value', parseInt(yardArg[0]));
+        }
 
-      if (yardArg[1] == null) {
-        // Nada Surf.
-      } else if (!onlyNumbers(yardArg[1])) {
-        argumentIntegers();
-      } else if (parseInt(yardArg[1]) > 999) {
-        argumentLength();
-      } else {
-        longest.setAttribute('value', parseInt(yardArg[1]));
-      }
+        if (yardArg[1] == null) {
+          return;
+        } else if (!onlyNumbers(yardArg[1])) {
+          argumentIntegers();
+        } else if (parseInt(yardArg[1]) > 999) {
+          argumentLength();
+        } else {
+          longest.setAttribute('value', parseInt(yardArg[1]));
+        }
 
-      if (yardArg[2] == null) {
-        // Nada Surf.
-      } else if (!onlyNumbers(yardArg[2])) {
-        argumentIntegers();
-      } else if (parseInt(yardArg[2]) > 10) {
-        argumentDispersion();
-      } else {
-        dispersion.setAttribute('value', parseInt(yardArg[2]));
-      }
+        if (yardArg[2] == null) {
+          return;
+        } else if (!onlyNumbers(yardArg[2])) {
+          argumentIntegers();
+        } else if (parseInt(yardArg[2]) > 10) {
+          argumentDispersion();
+        } else {
+          dispersion.setAttribute('value', parseInt(yardArg[2]));
+        }
 
-      randomYardage();
+        randomYardage();
+      }
     }
 
     document.getElementById('randomize').addEventListener('click', function(r) {
