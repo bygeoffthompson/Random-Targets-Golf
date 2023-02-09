@@ -31,21 +31,21 @@
    <body>
     <div class="align-items-center h-100 justify-content-center d-flex flex-column p-3 w-100">
       <h1 class="visually-hidden" title="Random Golf Distance Generator">Random Golf Distance Generator</h1>
-      <div class="alert alert-warning d-none" id="alert-warning" role="warning"></div>
+      <div class="alert alert-danger d-none" id="alert" role="alert"></div>
       <form class="d-block d-sm-flex mb-sm-3 row" id="app" onsubmit="return false">
         <div class="col-12 col-sm-4 py-1">
           <label class="visually-hidden" for="shortest">Minimum Distance Request</label>
-          <input tabindex="2" inputmode="decimal" min="0" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="shortest" name="shortest" value="50" onfocusout="shortestYardage()" required>
+          <input tabindex="2" inputmode="decimal" min="0" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="shortest" name="shortest" value="50" onfocusout="shortestValue()" required>
           <p class="form-text m-0 text-center text-light">Minimum Distance Request</p>
         </div>
         <div class="col-12 col-sm-4 py-1">
           <label class="visually-hidden" for="longest">Maximum Distance Request</label>
-          <input tabindex="3" inputmode="decimal" min="1" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="longest" name="longest" value="100" onfocusout="longestYardage()" required>
+          <input tabindex="3" inputmode="decimal" min="1" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="longest" name="longest" value="100" onfocusout="longestValue()" required>
           <p class="form-text m-0 text-center text-light">Maximum Distance Request</p>
         </div>
         <div class="col-12 col-sm-4 py-1">
           <label class="visually-hidden" for="longest">Dispersion</label>
-          <input tabindex="3" inputmode="decimal" min="0" max="10" class="fw-bolder p-1 text-center w-100" type="number" id="dispersion" name="dispersion" value="0" onfocusout="dispersionYardage()" required>
+          <input tabindex="3" inputmode="decimal" min="0" max="10" class="fw-bolder p-1 text-center w-100" type="number" id="dispersion" name="dispersion" value="0" onfocusout="dispersionValue()" required>
           <p class="form-text m-0 text-center text-light">Dispersion +/-</p>
         </div>
         <div class="col-12 my-3 text-center">
@@ -55,17 +55,16 @@
       <h2 class="fw-bolder mb-4 text-center text-light">Your Golf Shot Is:
         <span class="d-block display-2 fw-bolder monospace my-3 p-5 text-center" id="flag"><span id="flagstick"></span><span id="random-yardage"></span></span>
         <span class="d-block fw-bolder opacity-75 text-center text-light" id="yardage-range"></span>
-        <span class="d-block" id="units">Yards</span>
+        <span class="d-block usa" id="units">Yards</span>
       </h2>
       <button type="button" class="btn btn-success btn-sm shadow-lg" id="unit-toggle">Change Units</button>
     </div>
   <script>
     var url = window.location.href;
-    var alertWarning = document.getElementById('alert-warning');
+    var alert = document.getElementById('alert');
     var shortest = document.getElementById('shortest');
     var longest = document.getElementById('longest');
     var dispersion = document.getElementById('dispersion');
-    var randomize = document.getElementById('randomize');
     var unitToggle = document.getElementById('unit-toggle');
     var yardage = document.getElementById('random-yardage');
     var yardageRange = document.getElementById('yardage-range');
@@ -82,9 +81,9 @@
       if (yardArg[0] == null) {
         // Nada Surf.
       } else if (!onlyNumbers(yardArg[0])) {
-        argumentAlertNumbers();
+        argumentIntegers();
       } else if (parseInt(yardArg[0]) > 999) {
-        argumentAlertLength();
+        argumentLength();
       } else {
         shortest.setAttribute('value', parseInt(yardArg[0]));
       }
@@ -92,9 +91,9 @@
       if (yardArg[1] == null) {
         // Nada Surf.
       } else if (!onlyNumbers(yardArg[1])) {
-        argumentAlertNumbers();
+        argumentIntegers();
       } else if (parseInt(yardArg[1]) > 999) {
-        argumentAlertLength();
+        argumentLength();
       } else {
         longest.setAttribute('value', parseInt(yardArg[1]));
       }
@@ -102,9 +101,9 @@
       if (yardArg[2] == null) {
         // Nada Surf.
       } else if (!onlyNumbers(yardArg[2])) {
-        argumentAlertNumbers();
+        argumentIntegers();
       } else if (parseInt(yardArg[2]) > 10) {
-        argumentAlertDispersion();
+        argumentDispersion();
       } else {
         dispersion.setAttribute('value', parseInt(yardArg[2]));
       }
@@ -112,46 +111,52 @@
       randomYardage();
     }
 
-    randomize.addEventListener('click', function(r) {
+    document.getElementById('randomize').addEventListener('click', function(r) {
+      alert.classList.add('d-none');
       randomYardage();
     });
 
-    function argumentAlertDispersion() {
-      alertWarning.append('Warning: URL Dispersion Argument is limited to a maximum of 10. ');
-      alertWarning.classList.remove('d-none');
+    function argumentDispersion() {
+      alert.append('Error: URL Dispersion Argument is limited to a maximum of 10. ');
+      alert.classList.remove('d-none');
+      zeroOut();
     }
 
-    function argumentAlertLength() {
-      alertWarning.append('Warning: URL Distance Arguments are limited to three digits. ');
-      alertWarning.classList.remove('d-none');
+    function argumentLength() {
+      alert.append('Error: URL Distance Arguments are limited to three digits. ');
+      alert.classList.remove('d-none');
+      zeroOut();
     }
 
-    function argumentAlertNumbers() {
-      alertWarning.append('Warning: URL Arguments must be integers. ');
-      alertWarning.classList.remove('d-none');
+    function argumentIntegers() {
+      alert.append('Error: All URL Arguments must be integers. ');
+      alert.classList.remove('d-none');
+      zeroOut();
     }
 
-    function shortestYardage() {
+    function zeroOut() {
+      shortest.setAttribute('value', '0');
+      longest.setAttribute('value', '0');
+      dispersion.setAttribute('value', '0');
+    }
+
+    function shortestValue() {
       shortest.setAttribute('value', parseInt(shortest.value));
     }
 
-    function longestYardage() {
+    function longestValue() {
       longest.setAttribute('value', parseInt(longest.value));
     }
 
-    function dispersionYardage() {
+    function dispersionValue() {
       dispersion.setAttribute('value', parseInt(dispersion.value));
     }
-
 
     function randomYardage() {
       var shortestVal = parseInt(shortest.value);
       var longestVal = parseInt(longest.value);
       var dispersionVal = parseInt(dispersion.value);
-
-      var randomNumber = function (s, l) {
-	      return Math.floor(Math.random() * (l - s + 1) + s);
-      };
+      var randomNumber = function(s,l){return Math.floor(Math.random()*(l-s+1)+s);};
       var yards = randomNumber(shortestVal, longestVal);
 
       if (dispersionVal > 0) {
@@ -159,6 +164,8 @@
         var long = yards + dispersionVal;
         var target = short + '-' + long;
         yardageRange.innerHTML = target;
+      } else {
+        yardageRange.innerHTML = '';
       }
 
       yardage.innerHTML = yards;
@@ -166,11 +173,11 @@
 
     unitToggle.addEventListener('click', function(u) {
       var units = document.getElementById('units');
-      if (!units.classList.contains('eu')) {
-        units.classList.add('eu');
+      units.classList.toggle('usa');
+
+      if (!units.classList.contains('usa')) {
         units.innerHTML = 'Meters';
       } else {
-        units.classList.remove('eu');
         units.innerHTML = 'Yards';
       }
     });
