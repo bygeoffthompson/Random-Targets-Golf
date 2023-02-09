@@ -71,7 +71,9 @@
     var yardageRange = document.getElementById('yardage-range');
     randomYardage();
 
-    if (url.indexOf('?') > -1) {
+    if (url.indexOf('?fbclid') > -1) {
+      // Nada Surf.
+    } else if (url.indexOf('?') > -1) {
       var urlArgs = url.split('?').pop();
       var yardArg = urlArgs.split(',');
 
