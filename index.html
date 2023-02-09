@@ -10,14 +10,13 @@
     <link href="https://cdn.shopify.com/s/files/1/0388/4423/5907/files/Uneekor_Icon_08012022_32x32.png" rel="shortcut icon" type="image/png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <style>
-      body{background-image:linear-gradient(125deg,#006b54 81%,#fedd00 98%);border:.25rem solid #fedd00;height:100vh;overflow:hidden;width:100vw;}
-      body>div{overflow-y:scroll;}
+      body{background-image:linear-gradient(125deg,#006b54 81%,#fedd00 98%);border:.25rem solid #fedd00;height:100vh;width:100vw;}
       #flag{background:#ff0;color:#006b54;letter-spacing:-4px;position:relative;transform:rotate(-2deg) skew(-5deg, -3deg);}
       #flag::after{content:'';border:1.5rem solid #006b54;bottom:-2px;height:calc(100% + 4px);left:-2px;position:absolute;width:calc(100% + 4px);}
       #flag::before{content:'';position:absolute;top:0;width:calc(100% - 30px);height:100%;background-image:linear-gradient(100deg,transparent 0%,rgba(0,0,0,.1)20%,rgba(0,0,0,.4)50%,rgba(0,0,0,.1)80%,transparent 100%);animation:flagWave 4s ease-in-out infinite;}
       @keyframes flagWave {0%{left:10px;}50%{left:30px;}100%{left:10px;}}
-      #flagstick{background:#ff0;border-right:1px solid rgba(0,0,0,.3);border-top:4px solid #000;height:55vh;left:19px;position:absolute;top:20px;transform:rotate(1deg);width:5px;z-index:1;}
-      #random-yardage{position:relative;text-shadow: rgba(0 0 0 / 30%) 4px 4px 20px;top:-3px;}
+      #flagstick{background:#ff0;border-right:1px solid rgba(0,0,0,.3);border-top:4px solid #000;height:50vh;left:19px;position:absolute;top:20px;transform:rotate(1deg);width:5px;z-index:1;}
+      #random-yardage{position:relative;text-shadow:rgb(255,255,0,.7)5px 0 15px;top:-3px;}
       #random-yardage::after{background:#f00;bottom:0;content:'';display:block;height:3px;left:0;position:absolute;width:100%;}
       #yardage-range{bottom:1rem;position:relative;}
       .monospace{font-family:'Courier New',san-serif;}
@@ -27,12 +26,11 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-D0F2NP88H4');
     </script>
   </head>
    <body>
-    <div class="align-items-center h-100 justify-content-center d-flex flex-column p-3 w-100">
+    <div class="align-items-center h-100 justify-content-center d-flex flex-column p-3 w-100" style="overflow-y:scroll;">
       <h1 class="visually-hidden" title="Random Golf Distance Generator">Random Golf Distance Generator</h1>
       <div class="alert alert-danger d-none" id="alert" role="alert"><strong class="d-block mb-2 text-center">URL Argument Syntax: <code>?[minimum],[maximum],[dispersion]</code></strong></div>
       <form class="d-block d-sm-flex mb-sm-3 row" id="app" onsubmit="return false">
@@ -71,7 +69,6 @@
     var unitToggle = document.getElementById('unit-toggle');
     var yardage = document.getElementById('random-yardage');
     var yardageRange = document.getElementById('yardage-range');
-    randomYardage();
 
     if (url.indexOf('?fbclid') > -1) {
       // Ignore Facebook Arguments.
@@ -108,8 +105,6 @@
         } else {
           dispersion.setAttribute('value', parseInt(yardArg[2]));
         }
-
-        randomYardage();
       }
     }
 
@@ -167,7 +162,9 @@
       yardage.innerHTML = yards;
     }
 
-    unitToggle.addEventListener('click', function(u) {
+    randomYardage();
+
+    unitToggle.addEventListener('click', function() {
       var units = document.getElementById('units');
       units.classList.toggle('usa');
 
