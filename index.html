@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Random Golf Distances</title>
     <meta name="description" content="A web application that generates random numbers for golf shot distance practice.">
@@ -36,21 +36,21 @@
       <form class="d-block d-sm-flex mb-sm-3 row" id="app" onsubmit="return false">
         <div class="col-12 col-sm-4 py-1">
           <label class="visually-hidden" for="shortest">Minimum Distance Request</label>
-          <input tabindex="2" inputmode="decimal" min="0" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="shortest" name="shortest" value="50" onfocusout="shortestValue()" required>
+          <input aria-label="Minimum Distance Request" tabindex="0" min="0" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="shortest" name="shortest" value="50" onfocusout="shortestValue()" required>
           <p class="form-text m-0 text-center text-light">Minimum Distance Request</p>
         </div>
         <div class="col-12 col-sm-4 py-1">
           <label class="visually-hidden" for="longest">Maximum Distance Request</label>
-          <input tabindex="3" inputmode="decimal" min="1" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="longest" name="longest" value="100" onfocusout="longestValue()" required>
+          <input aria-label="Maximum Distance Request" tabindex="0" min="1" max="999" class="fw-bolder p-1 text-center w-100" type="number" id="longest" name="longest" value="100" onfocusout="longestValue()" required>
           <p class="form-text m-0 text-center text-light">Maximum Distance Request</p>
         </div>
         <div class="col-12 col-sm-4 py-1">
-          <label class="visually-hidden" for="longest">Dispersion</label>
-          <input tabindex="3" inputmode="decimal" min="0" max="10" class="fw-bolder p-1 text-center w-100" type="number" id="dispersion" name="dispersion" value="0" onfocusout="dispersionValue()" required>
+          <label class="visually-hidden" for="dispersion">Dispersion Request</label>
+          <input aria-label="Dispersion Request" tabindex="0" min="0" max="10" class="fw-bolder p-1 text-center w-100" type="number" id="dispersion" name="dispersion" value="0" onfocusout="dispersionValue()" required>
           <p class="form-text m-0 text-center text-light">Dispersion +/-</p>
         </div>
         <div class="col-12 my-3 text-center">
-          <input tabindex="1" type="submit" class="btn btn-light btn-lg shadow-lg" id="randomize" value="Randomize"></button>
+          <input tabindex="0" type="submit" class="btn btn-light btn-lg shadow-lg" id="randomize" value="Randomize"></button>
         </div>
       </form>
       <h2 class="fw-bolder mb-4 text-center text-light">Your Golf Shot Is:
