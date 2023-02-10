@@ -41,7 +41,9 @@
    <body>
     <div class="align-items-center justify-content-center d-sm-flex flex-column p-3 w-100" style="height:100vh;overflow-y:scroll;">
       <h1 class="visually-hidden" title="Random Golf Distance Generator">Random Golf Distance Generator</h1>
-      <div class="alert alert-danger d-none" id="alert" role="alert"><strong class="d-block mb-2 text-center">URL Argument Syntax: <code>?[minimum],[maximum],[dispersion]</code></strong></div>
+      <div class="alert alert-danger d-none" id="alert" role="alert">
+        <strong class="d-block mb-2 text-center">URL Argument Syntax: <code>?[minimum],[maximum],[dispersion]</code></strong>
+      </div>
       <form class="d-block d-sm-flex mb-sm-3 row" id="app" onsubmit="return false">
         <div class="col-12 col-sm-4 py-1">
           <label class="visually-hidden" for="shortest">Minimum Distance Request</label>
@@ -96,7 +98,7 @@
         if (yardArg[0] == null) {
           return;
         } else if (!onlyNumbers(yardArg[0]) || parseInt(yardArg[0]) > 999) {
-          lengthError();
+          argumentError();
         } else {
           shortest.setAttribute('value', parseInt(yardArg[0]));
         }
@@ -104,7 +106,7 @@
         if (yardArg[1] == null) {
           return;
         } else if (!onlyNumbers(yardArg[1]) || parseInt(yardArg[1]) > 999) {
-          lengthError();
+          argumentError();
         } else {
           longest.setAttribute('value', parseInt(yardArg[1]));
         }
@@ -112,7 +114,7 @@
         if (yardArg[2] == null) {
           return;
         } else if (!onlyNumbers(yardArg[2]) || parseInt(yardArg[2]) > 10) {
-          dispersionError();
+          argumentError();
         } else {
           dispersion.setAttribute('value', parseInt(yardArg[2]));
         }
@@ -124,14 +126,7 @@
       randomYardage();
     });
 
-    function dispersionError() {
-      alert.append('Error: Dispersion Argument is limited to numbers less than 10. ');
-      alert.classList.remove('d-none');
-      zeroOut();
-    }
-
-    function lengthError() {
-      alert.append('Error: Distance Arguments are limited to numbers up to three digits in length. ');
+    function argumentError() {
       alert.classList.remove('d-none');
       zeroOut();
     }
