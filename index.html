@@ -74,7 +74,6 @@
     var shortest = document.getElementById('shortest');
     var longest = document.getElementById('longest');
     var dispersion = document.getElementById('dispersion');
-    var unitToggle = document.getElementById('unit-toggle');
     var yardage = document.getElementById('random-yardage');
     var yardageRange = document.getElementById('yardage-range');
 
@@ -114,7 +113,7 @@
 
     randomYardage();
 
-    unitToggle.addEventListener('click', function() {
+    document.getElementById('unit-toggle').addEventListener('click', function() {
       var units = document.getElementById('units');
       units.classList.toggle('usa');
       if (!units.classList.contains('usa')) {
