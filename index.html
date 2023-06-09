@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Random Golf Distance Generator</title>
-    <meta name="description" content="A web app that generates random distances for practicing golf shots.">
+    <meta name="description" content="A browser web app to generate random distances for practicing golf shots.">
     <meta name="author" content="Geoff Thompson">
     <meta property="og:title" content="Random Golf Distance Generator">
     <meta property="og:type" content="website" />
@@ -24,8 +24,8 @@
       #flagstick{background:#ff0;border-right:1px solid rgba(0,0,0,.4);border-top:3px solid #000;height:350%;left:18px;position:absolute;top:20px;transform:rotate(1deg);width:5px;z-index:1;}
       #random-yardage{border-bottom:3px solid #f00;position:relative;text-shadow:rgb(255,255,0,.7)5px 0 15px;top:-3px;animation:number 3s ease-in-out infinite;}
       @keyframes number {0%{letter-spacing:-2px;}50%{letter-spacing:-4px;}100%{letter-spacing:-2px;}}
-      #random-yardage::after{content:'';display:block;height:0;left:-52px;position:absolute;width:0;border-left:80px solid transparent;border-right:80px solid transparent;border-bottom:8px solid #006b54;animation:flagCut 3s ease-in-out infinite;}
-      @keyframes flagCut {0%{bottom:-36px;}50%{bottom:-32px;}100%{bottom:-36px;}}
+      #random-yardage::after{content:'';display:block;height:0;left:-52px;position:absolute;width:0;border-left:92px solid transparent;border-right:92px solid transparent;border-bottom:8px solid #006b54;animation:flagCut 3s ease-in-out infinite;}
+      @keyframes flagCut {0%{bottom:-37px;}50%{bottom:-33px;}100%{bottom:-37px;}}
       #random-yardage::before{background:#006b54;content:'';height:14px;left:calc(50% + 16px);position:absolute;top:-34px;width:350%;z-index:1;animation:flagCover 2s ease-in-out infinite;}
       @keyframes flagCover {0%{transform:translateX(-50%) rotate(3deg);}50%{transform:translateX(-50%) rotate(5deg);}100%{transform:translateX(-50%) rotate(3deg);}}
       #yardage-range{bottom:1rem;position:relative;}
@@ -45,17 +45,17 @@
         <form class="d-block d-sm-flex mb-4 row text-center" id="app" onsubmit="return false">
           <div class="col-12 col-sm-4 mb-2">
             <label class="visually-hidden" for="shortest">Minimum Distance Request</label>
-            <input aria-label="Minimum Distance Request" tabindex="0" min="0" max="999" class="form-control fw-bolder text-center" type="number" id="shortest" name="shortest" value="50" onfocusout="updateValues()" required>
+            <input aria-label="Minimum Distance Request" tabindex="0" min="0" max="999" class="form-control fw-bolder text-center" type="number" id="shortest" name="shortest" value="50" onfocusout="updateValues()" style="font-size:2rem;" required>
             <p class="form-text text-light">Minimum Distance Request</p>
           </div>
           <div class="col-12 col-sm-4 mb-2">
             <label class="visually-hidden" for="longest">Maximum Distance Request</label>
-            <input aria-label="Maximum Distance Request" tabindex="0" min="1" max="999" class="form-control fw-bolder text-center" type="number" id="longest" name="longest" value="100" onfocusout="updateValues()" required>
+            <input aria-label="Maximum Distance Request" tabindex="0" min="1" max="999" class="form-control fw-bolder text-center" type="number" id="longest" name="longest" value="100" onfocusout="updateValues()" style="font-size:2rem;" required>
             <p class="form-text text-light">Maximum Distance Request</p>
           </div>
           <div class="col-12 col-sm-4 mb-2">
             <label class="visually-hidden" for="dispersion">Dispersion Request</label>
-            <input aria-label="Dispersion Request" tabindex="0" min="0" max="10" class="form-control fw-bolder text-center" type="number" id="dispersion" name="dispersion" value="0" onfocusout="updateValues()" required>
+            <input aria-label="Dispersion Request" tabindex="0" min="0" max="10" class="form-control fw-bolder text-center" type="number" id="dispersion" name="dispersion" value="0" onfocusout="updateValues()" style="font-size:2rem;" required>
             <p class="form-text text-light">Dispersion +/-</p>
           </div>
           <div class="col-12">
@@ -63,11 +63,11 @@
           </div>
         </form>
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 pe-none">
             <h2 class="mb-3 mx-auto text-center text-light">Your Golf Shot Is:
-              <span class="d-block fw-bolder display-2 my-3 p-5 pe-none" id="flag"><span id="flagstick"></span><span id="random-yardage"></span></span>
-              <span class="d-block pe-none opacity-75" id="yardage-range"></span>
-              <span class="d-block mb-2 pe-none usa" id="units">Yards</span>
+              <span class="d-block fw-bolder display-2 my-3 p-5" id="flag"><span id="flagstick"></span><span id="random-yardage"></span></span>
+              <span class="d-block opacity-75" id="yardage-range"></span>
+              <span class="d-block mb-2 usa" id="units">Yards</span>
             </h2>
           </div>
           <div class="col-12 text-center">
