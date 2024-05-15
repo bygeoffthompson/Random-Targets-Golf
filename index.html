@@ -103,7 +103,13 @@
         var short = yards - dispersionVal;
         var long = yards + dispersionVal;
         var target = short + '-' + long;
-        yardageRange.innerHTML = target;
+
+        if (short < shortestVal || long > longestVal) {
+          randomYardage();
+          return;
+        } else {
+          yardageRange.innerHTML = target;
+        }
       } else {
         yardageRange.innerHTML = '';
       }
