@@ -67,11 +67,10 @@
             <h2 class="mb-3 mx-auto text-center text-light">Your Golf Shot Is:
               <span class="d-block fw-bolder display-2 my-3 p-5" id="flag"><span id="flagstick"></span><span id="random-yardage"></span></span>
               <span class="d-block opacity-75" id="yardage-range"></span>
-              <span class="d-block mb-2 usa" id="units">Yards</span>
             </h2>
           </div>
           <div class="col-12 text-center">
-            <button aria-label="Change Units" type="button" class="btn btn-success btn-sm shadow-lg" id="unit-toggle">Change Units</button>
+            <button aria-label="Yards" type="button" class="btn btn-success btn-lg shadow-lg yards" id="unit-toggle">Yards</button>
           </div>
         </div>
       </div>
@@ -114,12 +113,13 @@
     randomYardage();
 
     document.getElementById('unit-toggle').addEventListener('click', function() {
-      var units = document.getElementById('units');
-      units.classList.toggle('usa');
-      if (!units.classList.contains('usa')) {
-        units.innerHTML = 'Meters';
+      var unitToggle = document.getElementById('unit-toggle');
+      unitToggle.classList.toggle('meters');
+      unitToggle.classList.toggle('yards');
+      if (!unitToggle.classList.contains('meters')) {
+        unitToggle.innerHTML = 'Yards';
       } else {
-        units.innerHTML = 'Yards';
+        unitToggle.innerHTML = 'Meters';
       }
     });
   </script>
