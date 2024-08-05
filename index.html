@@ -43,20 +43,17 @@
       <h1 class="visually-hidden" title="Golf's Random Distance Generator">Golf's Random Distance Generator</h1>
       <div class="container py-3">
         <form class="d-block d-sm-flex mb-4 row text-center" id="app" onsubmit="return false">
-          <div class="col-12 col-sm-4 mb-2">
-            <label class="visually-hidden" for="shortest">Minimum Distance Request</label>
+          <div class="col-12 col-sm-4 mb-3">
+            <label class="mb-2 text-light" for="shortest">Minimum Distance</label>
             <input aria-label="Minimum Distance Request" tabindex="0" min="0" max="999" class="form-control fw-bolder text-center" type="number" id="shortest" name="shortest" value="50" onfocusout="updateValues()" style="font-size:2rem;" required>
-            <p class="form-text text-light">Minimum Distance Request</p>
           </div>
-          <div class="col-12 col-sm-4 mb-2">
-            <label class="visually-hidden" for="longest">Maximum Distance Request</label>
+          <div class="col-12 col-sm-4 mb-3">
+            <label class="mb-2 text-light" for="longest">Maximum Distance</label>
             <input aria-label="Maximum Distance Request" tabindex="0" min="1" max="999" class="form-control fw-bolder text-center" type="number" id="longest" name="longest" value="100" onfocusout="updateValues()" style="font-size:2rem;" required>
-            <p class="form-text text-light">Maximum Distance Request</p>
           </div>
-          <div class="col-12 col-sm-4 mb-2">
-            <label class="visually-hidden" for="dispersion">Dispersion Request</label>
+          <div class="col-12 col-sm-4 mb-3">
+            <label class="mb-2 text-light" for="dispersion">Dispersion +/-</label>
             <input aria-label="Dispersion Request" tabindex="0" min="0" max="5" class="form-control fw-bolder text-center" type="number" id="dispersion" name="dispersion" value="0" onfocusout="updateValues()" style="font-size:2rem;" required>
-            <p class="form-text text-light">Dispersion +/-</p>
           </div>
           <div class="col-12">
             <input aria-label="Randomize" tabindex="0" type="submit" class="btn btn-light btn-lg shadow-lg" id="randomize" value="Randomize">
